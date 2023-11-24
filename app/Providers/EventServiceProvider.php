@@ -27,7 +27,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Travel::observe(TravelObserver::class);
+        
     }
 
     /**
