@@ -11,7 +11,7 @@ class TravelObserver
      */
     public function creating(Travel $travel): void
     {
-        //
+        $travel->slug = str($travel->name)->slug();
     }
 
    
