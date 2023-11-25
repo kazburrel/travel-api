@@ -28,7 +28,6 @@ class TravelListTest extends TestCase
         $publicTravel = Travel::factory()->create(['is_public' => true]);
  
         $response = $this->get('/api/v1/travels');
- 
         $response->assertStatus(200);
  
         // We check that only the public record is returned
