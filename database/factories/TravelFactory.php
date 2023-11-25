@@ -19,11 +19,10 @@ class TravelFactory extends Factory
     {
         return [
             'id' => Str::uuid(),
-            'is_public' => true,
-            'slug' => 'first-travel',
-            'name' => 'first travel',
-            'description' => 'great offer',
-            'number_of_days' => 5,
+            'is_public' => fake()->boolean(),
+            'name' => fake()->text(20),
+            'description' => fake()->text(100),
+            'number_of_days' => rand(1, 10),
         ];
     }
 }
