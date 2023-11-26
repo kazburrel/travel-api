@@ -16,11 +16,11 @@ class TourResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'slug' => $this->slug,
+            'travel_id' => $this->travel_id,
             'name' => $this->name,
-            'description' => $this->description,
-            'number_of_days' => $this->number_of_days,
-            'number_of_nights' => $this->number_of_nights,
+            'starting_date' => $this->starting_date,
+            'ending_date' => $this->ending_date,
+            'price' => $this->price,
         ];
     }
 }

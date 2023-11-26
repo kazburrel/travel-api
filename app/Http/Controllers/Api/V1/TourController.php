@@ -10,12 +10,12 @@ use Illuminate\Http\Request;
 
 class TourController extends Controller
 {
-    public function index(Travel $travel)
+    public function index(Travel $travels)
     {
-        $tours = $travel->tours() //Tour::where('travel_id', $travel->id) both are the same
+        $tours = $travels->tours() //Tour::where('travel_id', $travel->id) both are the same
             ->orderBy('starting_date')
             ->paginate();
-
+// dd($travel);
         return TourResource::collection($tours);
     }
 }
