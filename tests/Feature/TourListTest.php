@@ -93,8 +93,6 @@ class TourListTest extends TestCase
         $response = $this->get('/api/v1/travels/' . $travel->slug . '/tours?sortBy=price&sortOrder=asc');
 
         $response->assertStatus(200);
-        // dump($cheapEarlierTour->id);
-
         $response->assertJsonPath('data.0.id', $cheapEarlierTour->id->toString());
         $response->assertJsonPath('data.1.id', $cheapLaterTour->id->toString());
         $response->assertJsonPath('data.2.id', $expensiveTour->id->toString());
