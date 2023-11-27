@@ -22,10 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('travels',[TravelController::class, 'index']);
-Route::get('travels/{travel:slug}/tours',[TourController::class, 'index']);
+Route::get('travels', [TravelController::class, 'index']);
+Route::get('travels/{travel:slug}/tours', [TourController::class, 'index']);
 
-Route::prefix('admin')->middleware(['auth:sanctum'])->group(function () {
+Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::post('travels', [Admin\TravelController::class, 'store']);
 });
 Route::post('login', LoginController::class);
