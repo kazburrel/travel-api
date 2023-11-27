@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class CreateUserCommand extends Command
 {
@@ -21,16 +23,31 @@ class CreateUserCommand extends Command
         $user['password'] = $this->secret('Password of the new user');
         $roleName = $this->choice('Role of the new user', ['admin', 'editor'], 1);
         $role = Role::where('name', $roleName)->first();
-        
+
+        if (!$role) {
+            $this->error('Role not found');
+
+            return -1;
+        }
+
+        $validator = Validator::make($user, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', Password::defaults()],
+        ]);
+
+        if ($validator->fails()) {
+            foreach ($validator->errors()->all() as $error) {
+                $this->error($error);
+            }
+
+            return -1;
+        }
+
         DB::transaction(function () use ($user, $role) {
             $user['password'] = Hash::make($user['password']);
             $newUser = User::create($user);
             $newUser->roles()->attach($role->id);
         });
-        // if (!$role) {
-        //     $this->error('Role not found');
-
-        //     return -1;
-        // }
     }
 }
