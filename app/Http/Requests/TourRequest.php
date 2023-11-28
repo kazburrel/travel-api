@@ -10,10 +10,10 @@ class TourRequest extends FormRequest
     {
         return true;
     }
- 
+
     public function rules(): array
     {
-       
+
         return [
             'name' => ['required'],
             'starting_date' => ['required', 'date'],

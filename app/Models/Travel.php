@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Travel extends Model
 {
-    use HasFactory, HasUuids, SoftDeletes, Sluggable;
+    use HasFactory, HasUuids, Sluggable, SoftDeletes;
 
     protected $fillable = [
         'is_public',
@@ -31,8 +31,8 @@ class Travel extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
-            ]
+                'source' => 'name',
+            ],
         ];
     }
 

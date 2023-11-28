@@ -13,6 +13,7 @@ class TourController extends Controller
     {
 
         $tour = $travel->tours()->create($request->validated());
+
         return new TourResource($tour);
     }
 }

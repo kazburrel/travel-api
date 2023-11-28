@@ -18,12 +18,12 @@ class RoleMiddleware
         if (! auth()->check()) {
             abort(401);
         }
-        
+
         if (! auth()->user()->roles()->where('name', $role)->exists()) {
             abort(403);
         }
         // dd('hi');
- 
+
         return $next($request);
     }
 }
