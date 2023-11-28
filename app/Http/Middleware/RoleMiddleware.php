@@ -22,7 +22,7 @@ class RoleMiddleware
         if (! auth()->user()->roles()->where('name', $role)->exists()) {
             abort(403);
         }
-        dd('hi');
+        // dd('hi');
  
         return $next($request);
     }
